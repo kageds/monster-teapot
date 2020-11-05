@@ -1,0 +1,19 @@
+{
+	"2fa": {
+		"description": "Create a QRCode then display it so that it can be scanned into your favorite TOTP passcode app (e.g. Google Authenticator)",
+		"noNumber": "No number matching your search, but you should probably do something about the css... (hint: it belongs in /apps/demo/app.css!)",
+		"display": "Display QR Code",
+		"create": "Create QR Code",
+		"welcome": "2 Factor Authentication",
+		"user_state": "2 Factor Authentication: ",
+		"providers": "2FA Providers configured for this Account",
+		"titleGrid": {
+			"id" : "ID",
+			"name": "Name",
+			"provider_name": "Provider",
+			"enable": "Enabled",
+			"noMatching2fa": "There were no providers found matching your search",
+			"no2faConfigured": "There are no 2FA providers configured for this account, contact your Account Admin"
+		}
+	}
+}

@@ -1,0 +1,99 @@
+.providers-grid {
+    background: #fcfcfc;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    margin-top: 20px;
+}
+
+.providers-grid i.fa-plus {
+    margin-left: 5px;
+}
+
+.providers-grid .empty-search-row,
+.providers-grid .no-2fa-row {
+    display: none;
+    padding: 16px;
+    text-align: center;
+}
+
+.providers-grid .grid-row.title:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+}
+
+.providers-grid .grid-row.title,
+.providers-grid .grid-row .user-cells{
+    height: 50px;
+    line-height: 50px; /* 60 - padding */
+}
+
+.providers-grid .grid-row:not(:last-child) {
+    border-bottom: 1px solid #eee;
+}
+
+.providers-grid .grid-row.title .grid-cell {
+    text-align: left;
+    padding-left: 0;
+}
+
+.providers-grid .grid-row .grid-cell {
+    border-right: 1px solid #eee;
+    display: inline-block;
+    overflow: hidden;
+    padding-left: 10px;
+    width: 20%;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.providers-grid .grid-row .grid-cell:first-child {
+    border-left: none !important;
+}
+
+.providers-grid .grid-row .grid-cell:last-child {
+    border-right: none !important;
+}
+
+.providers-grid .grid-row .grid-cell:not(.features) {
+    white-space: nowrap;
+}
+
+.providers-grid .grid-row .grid-cell.centered {
+    padding: 0;
+    text-align: center;
+}
+
+.providers-grid .grid-row .grid-cell.right-aligned {
+    padding: 0 5px 0 0;
+    text-align: right;
+}
+
+.providers-grid .grid-row .grid-cell.features a.dropdown-toggle {
+    padding: 15px 7px 2px 15px;
+    text-align: left;
+    background: transparent !important;
+}
+
+.provider-cells {
+    height: 60px;
+    line-height: 60px;
+}
+
+/* Columns */
+.providers-grid .grid-row .grid-cell.id {
+    width: 10%;
+}
+
+.providers-grid .grid-row .grid-cell.name {
+    width: 30%;
+}
+
+.providers-grid .grid-row .grid-cell.provider_name {
+    width: 10%;
+}
+
+.providers-grid .grid-row .grid-cell.enabled {
+    width: 10%;
+}
+

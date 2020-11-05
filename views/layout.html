@@ -1,0 +1,39 @@
+<div id="2fa_wrapper">
+	<div class="hero-unit well">
+	<h1>{{ i18n.2fa.welcome }}</h1>
+	<p></p>
+	<p>{{ i18n.2fa.providers }}</p>
+	<div class="providers-grid">
+		<div class="grid-row title">
+			<div class="grid-cell id">{{ i18n.2fa.titleGrid.id }}</div>
+			<div class="grid-cell name">{{ i18n.2fa.titleGrid.name }}</div>
+			<div class="grid-cell provider_name">{{ i18n.2fa.titleGrid.provider_name }}</div>
+			<div class="grid-cell enable">{{ i18n.2fa.titleGrid.enable }}</div>
+		</div>
+		<div class="2fa-rows">
+			<div class="empty-search-row">
+				{{ i18n.2fa.titleGrid.noMatching2fa }}
+			</div>
+			<div class="no-2fa-row">
+				{{ i18n.2fa.titleGrid.no2faConfigured }}
+			</div>
+		</div>
+	</div>
+	<p></p>
+	<p>{{ i18n.2fa.description }}</p>
+	<p></p>
+	<button id="create" class="btn btn-primary">{{i18n.2fa.create}}</button>
+	&nbsp;&nbsp;&nbsp; 
+	<button id="display" class="btn btn-primary">{{i18n.2fa.display}}</button>
+	<p></p>
+	<div class="enable">
+		<div class="switch">
+			{{ i18n.2fa.user_state }}
+			{{#monsterSwitch}}
+				<input class="switch-state" data-on-label="{{i18n.enabled}}" data-off-label="{{i18n.disabled}}" type="checkbox" {{#if mfa_enabled}} checked="checked"{{/if}}></input>
+			{{/monsterSwitch}}
+		</div>
+	</div>
+	<div class="results"></div>
+	</div>
+  </div>
