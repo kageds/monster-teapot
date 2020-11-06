@@ -23,6 +23,10 @@ define(function(require) {
 				url: 'accounts/{accountId}/users/{userId}/qrcodes/{qrcodeId}',
 				verb: 'PATCH'
 			},
+			'qrcodes.delete': {
+				url: 'accounts/{accountId}/users/{userId}/qrcodes/{qrcodeId}',
+				verb: 'DELETE'
+			},
 			'mfa.get': {
 				url: 'accounts/{accountId}/multi_factor',
 				verb: 'GET'
@@ -119,7 +123,7 @@ define(function(require) {
 			});
 
 			$template.find('#create').on('click', function(e) {
-				self.createQRCode(function(response) {
+				self.newQRCode(function(response) {
 					monster.ui.alert('info', response.result);
 				});
 			  });
@@ -198,21 +202,48 @@ define(function(require) {
 			});
 		  },
 
-		  createQRCode: function(callback) {
+		  newQRCode: function(callback) {
 			var self = this;
 		
 			monster.request({
-			  resource: 'qrcodes.put',
-			  data: {
-				accountId: self.accountId,
-				userId: self.userId
-			  },
-			  success: function(data) {
-				callback(data.data);
-			  },
-			  error: function(response) {
-				monster.ui.alert('error', response.message);
-			  }
+				resource: 'qrcodes.get',
+				data: {
+				  accountId: self.accountId,
+				  userId: self.userId
+				},
+				success: function(data) {
+					_.each(data.data, function(qrcode) {
+						monster.request({
+							resource: 'qrcodes.delete',
+							data: {
+							  accountId: self.accountId,
+							  userId: self.userId,
+							  qrcodeId: qrcode.id,
+							},
+							success: function(data) {
+							},
+							error: function(response) {
+							  monster.ui.alert('error', response.message);
+							}
+						});
+					});
+				},
+				error: function(response) {
+				  monster.ui.alert('error', response.message);
+				}
+			});
+			monster.request({
+				resource: 'qrcodes.put',
+				data: {
+				  accountId: self.accountId,
+				  userId: self.userId
+				},
+				success: function(data) {
+				  callback(data.data);
+				},
+				error: function(response) {
+				  monster.ui.alert('error', response.message);
+				}
 			});
 		  },
 

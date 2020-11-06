@@ -3,7 +3,7 @@
 		"description": "Create a QRCode then display it so that it can be scanned into your favorite TOTP passcode app (e.g. Google Authenticator)",
 		"noNumber": "No number matching your search, but you should probably do something about the css... (hint: it belongs in /apps/demo/app.css!)",
 		"display": "Display QR Code",
-		"create": "Create QR Code",
+		"create": "New QR Code",
 		"welcome": "2 Factor Authentication",
 		"user_state": "2 Factor Authentication: ",
 		"providers": "2FA Providers configured for this Account",

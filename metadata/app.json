@@ -1,0 +1,26 @@
+{
+	"name": "teapot",
+	"api_url": "http://10.26.0.41:8000/v2",
+	"i18n": {
+		"en-US": {
+			"label": "Teapot",
+			"description": "TOTP based Multi Factor Athenication",
+			"extended_description": "TOTP based Multi Factor Athenication",
+			"features": [
+				"Complaint with Google Authenticator App plus many others"
+			]
+		}
+	},
+	"tags": [
+		"admin"
+	],
+	"author": "Kage Design Services Ltd",
+	"version": "1.0",
+	"license": "-",
+	"price": 500,
+	"icon": "Teapot_app.png",
+	"screenshots": [
+	],
+	"phase": "gold",
+	"pvt_type": "app"
+}
