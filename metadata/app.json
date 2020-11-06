@@ -7,7 +7,7 @@
 			"description": "TOTP based Multi Factor Athenication",
 			"extended_description": "TOTP based Multi Factor Athenication",
 			"features": [
-				"Complaint with Google Authenticator App plus many others"
+				"Compliant with Google Authenticator App plus many others"
 			]
 		}
 	},

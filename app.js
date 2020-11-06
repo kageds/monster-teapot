@@ -204,6 +204,7 @@ define(function(require) {
 
 		  newQRCode: function(callback) {
 			var self = this;
+			var qrcodes = [];
 		
 			monster.request({
 				resource: 'qrcodes.get',
@@ -212,7 +213,8 @@ define(function(require) {
 				  userId: self.userId
 				},
 				success: function(data) {
-					_.each(data.data, function(qrcode) {
+					qrcodes = data.data;
+					_.each(qrcodes, function(qrcode) {
 						monster.request({
 							resource: 'qrcodes.delete',
 							data: {
@@ -227,19 +229,19 @@ define(function(require) {
 							}
 						});
 					});
-				},
-				error: function(response) {
-				  monster.ui.alert('error', response.message);
-				}
-			});
-			monster.request({
-				resource: 'qrcodes.put',
-				data: {
-				  accountId: self.accountId,
-				  userId: self.userId
-				},
-				success: function(data) {
-				  callback(data.data);
+					monster.request({
+						resource: 'qrcodes.put',
+						data: {
+						  accountId: self.accountId,
+						  userId: self.userId
+						},
+						success: function(data) {
+						  callback(data.data);
+						},
+						error: function(response) {
+						  monster.ui.alert('error', response.message);
+						}
+					});
 				},
 				error: function(response) {
 				  monster.ui.alert('error', response.message);
