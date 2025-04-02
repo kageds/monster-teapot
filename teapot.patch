@@ -1,0 +1,89 @@
+From 09f79f70a01d20b1c7ae74c64e077397f5788fbf Mon Sep 17 00:00:00 2001
+From: Alan R Evans <alan@kageds.com>
+Date: Thu, 5 Nov 2020 15:32:21 +0000
+Subject: [PATCH] add suport for a TOTP based MFA
+
+---
+ src/apps/auth/app.js                | 20 ++++++++++++++++++++
+ src/apps/auth/i18n/en-US.json       |  7 +++++++
+ src/apps/auth/views/mfa-dialog.html |  5 +++++
+ 3 files changed, 32 insertions(+)
+ create mode 100644 src/apps/auth/views/mfa-dialog.html
+
+diff --git a/src/apps/auth/app.js b/src/apps/auth/app.js
+index d96b082..87ca1a4 100644
+--- a/src/apps/auth/app.js
++++ b/src/apps/auth/app.js
+@@ -1376,6 +1376,8 @@ define(function(require) {
+ 
+ 			if (data.multi_factor_request.provider_name === 'duo') {
+ 				self.showDuoDialog(data, loginData, success, error);
++			} else if (data.multi_factor_request.provider_name === 'totp') {
++				self.showTotpDialog(data, loginData, success, error);
+ 			} else {
+ 				error && error();
+ 			}
+@@ -1410,6 +1412,24 @@ define(function(require) {
+ 			});
+ 		},
+ 
++		showTotpDialog: function(data, loginData, success, error) {
++                        var self = this;
++                        var popup = $(self.getTemplate({
++                                name: 'mfa-dialog'
++                        }));
++			var form = popup.find('#form');
++
++                        popup.find('#submit').on('click', function() {
++				loginData.multi_factor_response = $('#pin').val();
++                                dialog.dialog('close').remove();
++                                success && success(loginData);
++                        });
++
++                        var dialog = monster.ui.dialog(popup, {
++                                title: self.i18n.active().hotpDialog.title
++                        });
++		},
++
+ 		/**
+ 		 * @param  {Object} [args]
+ 		 * @param  {Function} [args.success]
+diff --git a/src/apps/auth/i18n/en-US.json b/src/apps/auth/i18n/en-US.json
+index c0067e7..fc1d02c 100644
+--- a/src/apps/auth/i18n/en-US.json
++++ b/src/apps/auth/i18n/en-US.json
+@@ -23,6 +23,10 @@
+ 		"buttonText": "Sign in"
+ 	},
+ 
++	"mfa":{
++		"buttonText": "Submit"
++	},
++
+ 	"conferenceLogin": {
+ 		"userTab": "User",
+ 		"adminTab": "Administrator",
+@@ -133,6 +137,9 @@
+ 	"duoDialog": {
+ 		"title": "Multi-factor Authentication"
+ 	},
++	"hotpDialog": {
++		"title": "Multi-factor Authentication"
++	},
+ 	"multiFactor": {
+ 		"error": "The information sent by the multi-factor plugin isn't valid."
+ 	},
+diff --git a/src/apps/auth/views/mfa-dialog.html b/src/apps/auth/views/mfa-dialog.html
+new file mode 100644
+index 0000000..2d92581
+--- /dev/null
++++ b/src/apps/auth/views/mfa-dialog.html
+@@ -0,0 +1,5 @@
++<form class="form-horizontal" name="form">
++		<input type="text" id="pin" name="pin">
++		<i class="fa fa-pin"></i>
++                <button type="button" id="submit" class="monster-button monster-button-primary">{{ i18n.mfa.buttonText }}</button>
++</form>
+-- 
+2.8.0
+
